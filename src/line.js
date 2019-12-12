@@ -1,3 +1,7 @@
+const compareObject = function(object1, object2) {
+	return object1.x == object2.x && object1.y == object2.y;
+};
+
 class Line {
 	constructor(endA, endB) {
 		this.endA = endA;
@@ -8,10 +12,8 @@ class Line {
 	}
 	isEqualTo(providedLine) {
 		return (
-			this.endA.x == providedLine.endA.x &&
-			this.endA.y == providedLine.endA.y &&
-			this.endB.x == providedLine.endB.x &&
-			this.endB.y == providedLine.endB.y
+			compareObject(this.endA, providedLine.endA) &&
+			compareObject(this.endB, providedLine.endB)
 		);
 	}
 }
