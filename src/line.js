@@ -5,17 +5,14 @@ class Line {
 	}
 	createLine() {
 		if (this.point1[1] == this.point2[1]) {
-			if (this.point1[1] == this.point2[1]) {
-				return "-".repeat(this.point2[0] - this.point1[0]);
-			}
-			return "-\n".repeat(this.point2[0] - this.point1[0]);
+			return "-".repeat(this.point2[0] - this.point1[0]);
 		}
 		if (this.point1[0] === this.point2[0]) {
 			return "-\n".repeat(this.point2[1] - this.point1[1]);
 		}
 	}
 	toString() {
-		return this.createLine().toString();
+		return this.createLine();
 	}
 	isEqualOrNot(providedLine) {
 		return this.toString() === providedLine;
