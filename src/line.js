@@ -1,17 +1,17 @@
 class Line {
-	constructor(point1, point2) {
-		this.point1 = point1;
-		this.point2 = point2;
+	constructor(endA, endB) {
+		this.endA = endA;
+		this.endB = endB;
 	}
 	toString() {
-		return `line co-ordinates are (${this.point1.x},${this.point1.y}) and (${this.point2.x},${this.point2.y})`;
+		return `line : (${this.endA.x},${this.endA.y}) and (${this.endB.x},${this.endB.y})`;
 	}
-	isEqualOrNot(providedLine) {
+	isEqualTo(providedLine) {
 		return (
-			this.point1.x == providedLine.point1.x &&
-			this.point1.y == providedLine.point1.y &&
-			this.point2.x == providedLine.point2.x &&
-			this.point2.y == providedLine.point2.y
+			this.endA.x == providedLine.endA.x &&
+			this.endA.y == providedLine.endA.y &&
+			this.endB.x == providedLine.endB.x &&
+			this.endB.y == providedLine.endB.y
 		);
 	}
 }
