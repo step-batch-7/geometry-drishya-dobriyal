@@ -17,6 +17,9 @@ class Line {
 	toString() {
 		return this.createLine().toString();
 	}
+	isEqualOrNot(providedLine) {
+		return this.toString() === providedLine;
+	}
 }
 
 module.exports = Line;
