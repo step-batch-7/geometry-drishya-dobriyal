@@ -24,6 +24,6 @@ describe("line", function() {
 		point1 = [0, 0];
 		point2 = [4, 0];
 		horizontalLine1 = new Line(point1, point2);
-		assert.strictEqual(horizontalLine1.isEqualOrNot(), true);
+		assert.strictEqual(horizontalLine1.isEqualOrNot("----"), true);
 	});
 });
