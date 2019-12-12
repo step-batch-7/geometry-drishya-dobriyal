@@ -3,19 +3,16 @@ class Line {
 		this.point1 = point1;
 		this.point2 = point2;
 	}
-	createLine() {
-		if (this.point1[1] == this.point2[1]) {
-			return "-".repeat(this.point2[0] - this.point1[0]);
-		}
-		if (this.point1[0] === this.point2[0]) {
-			return "-\n".repeat(this.point2[1] - this.point1[1]);
-		}
-	}
 	toString() {
-		return this.createLine();
+		return `line co-ordinates are (${this.point1.x},${this.point1.y}) and (${this.point2.x},${this.point2.y})`;
 	}
 	isEqualOrNot(providedLine) {
-		return this.toString() === providedLine;
+		return (
+			this.point1.x == providedLine.point1.x &&
+			this.point1.y == providedLine.point1.y &&
+			this.point2.x == providedLine.point2.x &&
+			this.point2.y == providedLine.point2.y
+		);
 	}
 }
 

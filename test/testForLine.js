@@ -2,28 +2,30 @@ const assert = require("assert");
 const Line = require("../src/line.js");
 
 describe("line", function() {
-	it("should make a horizontal line of given co-ordinates ", function() {
-		point1 = [0, 0];
-		point2 = [4, 0];
-		horizontalLine1 = new Line(point1, point2);
-		actualValue = horizontalLine1.toString();
-		horizontalLine2 = new Line(point1, point2);
-		expectedValue = horizontalLine2.toString();
-		assert.strictEqual(actualValue, expectedValue);
+	it("should return line representation in form of string  ", function() {
+		point1 = { x: 0, y: 0 };
+		point2 = { x: 0, y: 4 };
+		line1 = new Line(point1, point2);
+		actualValue = line1.toString();
+		assert.strictEqual(actualValue, "line co-ordinates are (0,0) and (0,4)");
+		line2 = new Line(point1, point2);
+		assert.strictEqual(actualValue, line2.toString());
 	});
-	it("should make a vertical line of given co-ordinates ", function() {
-		point1 = [0, 0];
-		point2 = [0, 4];
-		verticalLine1 = new Line(point1, point2);
-		actualValue = verticalLine1.toString();
-		verticalLine2 = new Line(point1, point2);
-		expectedValue = verticalLine2.toString();
-		assert.strictEqual(actualValue, expectedValue);
+});
+
+describe("isEqualOrNot", function() {
+	it("should be true if line are equal ", function() {
+		point1 = { x: 0, y: 0 };
+		point2 = { x: 0, y: 4 };
+		line1 = new Line(point1, point2);
+		comparedWithLine = { point1: { x: 0, y: 0 }, point2: { x: 0, y: 4 } };
+		assert.ok(line1.isEqualOrNot(comparedWithLine));
 	});
-	it("should state whether the asked given lines are equal or not ", function() {
-		point1 = [0, 0];
-		point2 = [4, 0];
-		horizontalLine1 = new Line(point1, point2);
-		assert.strictEqual(horizontalLine1.isEqualOrNot("----"), true);
+	it("should be false if line are equal ", function() {
+		point1 = { x: 0, y: 0 };
+		point2 = { x: 0, y: 4 };
+		line1 = new Line(point1, point2);
+		comparedWithLine = { point1: { x: 2, y: 0 }, point2: { x: 0, y: 4 } };
+		assert.ok(!line1.isEqualOrNot(comparedWithLine));
 	});
 });
