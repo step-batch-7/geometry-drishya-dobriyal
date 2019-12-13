@@ -24,6 +24,11 @@ class Line {
     const YLength = this.endA.y - this.endB.y;
     return Math.hypot(XLength, YLength);
   }
+  get slope() {
+    const XLength = this.endB.x - this.endA.x;
+    const YLength = this.endB.y - this.endA.y;
+    return YLength / XLength;
+  }
 }
 
 module.exports = Line;
