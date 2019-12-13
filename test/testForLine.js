@@ -111,6 +111,24 @@ describe("line", function() {
       const line2 = new Line(endA, endB);
       assert.ok(line1.isParallelTo(line2));
     });
+    it("should validate for Two slanting parallel  line ", function() {
+      let endA = { x: 5, y: 1 };
+      let endB = { x: 1, y: 5 };
+      const line1 = new Line(endA, endB);
+      endA = { x: 0, y: 1 };
+      endB = { x: 1, y: 0 };
+      const line2 = new Line(endA, endB);
+      assert.ok(line1.isParallelTo(line2));
+    });
+    it("should invalidate if two line are not parallel ", function() {
+      let endA = { x: 5, y: 0 };
+      let endB = { x: 1, y: 4 };
+      const line1 = new Line(endA, endB);
+      endA = { x: 3, y: 0 };
+      endB = { x: 3, y: 4 };
+      const line2 = new Line(endA, endB);
+      assert.isFalse(line1.isParallelTo(line2));
+    });
   });
 
   describe("slope", function() {
