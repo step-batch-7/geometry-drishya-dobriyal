@@ -4,8 +4,8 @@ const compareObject = function(object1, object2) {
 
 class Line {
   constructor(endA, endB) {
-    this.endA = endA;
-    this.endB = endB;
+    this.endA = { x: endA.x, y: endA.y };
+    this.endB = { x: endB.x, y: endB.y };
   }
   toString() {
     return `line : (${this.endA.x},${this.endA.y}) and (${this.endB.x},${this.endB.y})`;
