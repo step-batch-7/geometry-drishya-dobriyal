@@ -10,10 +10,11 @@ class Line {
   toString() {
     return `line : (${this.endA.x},${this.endA.y}) and (${this.endB.x},${this.endB.y})`;
   }
-  isEqualTo(providedLine) {
+  isEqualTo(compreTo) {
     return (
-      compareObject(this.endA, providedLine.endA) &&
-      compareObject(this.endB, providedLine.endB)
+      compreTo instanceof Line &&
+      compareObject(this.endA, compreTo.endA) &&
+      compareObject(this.endB, compreTo.endB)
     );
   }
 }
