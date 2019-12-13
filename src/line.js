@@ -19,6 +19,11 @@ class Line {
       arePointsEqual(this.endB, shape.endB)
     );
   }
+  get length() {
+    const XLength = this.endA.x - this.endB.x;
+    const YLength = this.endA.y - this.endB.y;
+    return Math.hypot(XLength, YLength);
+  }
 }
 
 module.exports = Line;

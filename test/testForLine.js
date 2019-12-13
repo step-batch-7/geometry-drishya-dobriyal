@@ -48,4 +48,15 @@ describe("line", function() {
       assert.ok(!line1.isEqualTo(compareWithLine));
     });
   });
+
+  describe("length", function() {
+    it(" 2 points having different Y co-Ordinates and same X co-Ordinates", function() {
+      const endA = { x: 0, y: 0 };
+      const endB = { x: 0, y: 4 };
+      const line1 = new Line(endA, endB);
+      const actualValue = line1.length;
+      const expectedValue = 4;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+  });
 });
