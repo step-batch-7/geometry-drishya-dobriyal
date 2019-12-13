@@ -1,4 +1,4 @@
-const compareObject = function(object1, object2) {
+const arePointsEqual = function(object1, object2) {
   return object1.x == object2.x && object1.y == object2.y;
 };
 
@@ -8,13 +8,15 @@ class Line {
     this.endB = { x: endB.x, y: endB.y };
   }
   toString() {
-    return `line : (${this.endA.x},${this.endA.y}) and (${this.endB.x},${this.endB.y})`;
+    const start = `(${this.endA.x},${this.endA.y})`;
+    const end = `(${this.endB.x},${this.endB.y})`;
+    return `line : ${start} and ${end}`;
   }
-  isEqualTo(compreTo) {
+  isEqualTo(shape) {
     return (
-      compreTo instanceof Line &&
-      compareObject(this.endA, compreTo.endA) &&
-      compareObject(this.endB, compreTo.endB)
+      shape instanceof Line &&
+      arePointsEqual(this.endA, shape.endA) &&
+      arePointsEqual(this.endB, shape.endB)
     );
   }
 }
