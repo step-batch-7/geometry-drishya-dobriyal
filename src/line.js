@@ -2,6 +2,12 @@ const arePointsEqual = function(object1, object2) {
   return object1.x == object2.x && object1.y == object2.y;
 };
 
+const calcSlope = function(endA, endB) {
+  const XLength = endB.x - endA.x;
+  const YLength = endB.y - endA.y;
+  return YLength / XLength;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -25,9 +31,13 @@ class Line {
     return Math.hypot(XLength, YLength);
   }
   get slope() {
-    const XLength = this.endB.x - this.endA.x;
-    const YLength = this.endB.y - this.endA.y;
-    return YLength / XLength;
+    return calcSlope(this.endA, this.endB);
+  }
+  isParallelTo(otherLine) {
+    return (
+      otherLine instanceof Line &&
+      calcSlope(otherLine.endA, otherLine.endB) === this.slope
+    );
   }
 }
 

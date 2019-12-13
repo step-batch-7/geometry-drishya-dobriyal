@@ -93,12 +93,21 @@ describe("line", function() {
   });
 
   describe("isParallelTo", function() {
-    it.skip("should validate for Two parallel line ", function() {
-      let endA = { x: 0, y: 0 };
-      let endB = { x: 0, y: 4 };
+    it("should validate for Two horizontal parallel  line ", function() {
+      let endA = { x: 1, y: 0 };
+      let endB = { x: 1, y: 4 };
       const line1 = new Line(endA, endB);
-      endA = { x: 0, y: 0 };
-      endB = { x: 0, y: 4 };
+      endA = { x: 3, y: 0 };
+      endB = { x: 3, y: 4 };
+      const line2 = new Line(endA, endB);
+      assert.ok(line1.isParallelTo(line2));
+    });
+    it("should validate for Two vertical parallel  line ", function() {
+      let endA = { x: 1, y: 3 };
+      let endB = { x: 7, y: 3 };
+      const line1 = new Line(endA, endB);
+      endA = { x: 1, y: 5 };
+      endB = { x: 8, y: 5 };
       const line2 = new Line(endA, endB);
       assert.ok(line1.isParallelTo(line2));
     });
