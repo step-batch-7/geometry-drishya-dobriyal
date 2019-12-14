@@ -15,4 +15,27 @@ describe("point", function() {
       assert.deepStrictEqual(point1.clone(), point1);
     });
   });
+
+  describe("isEqualTo", function() {
+    it("should validate for equal points", function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 2);
+      assert.ok(point1.isEqualTo(point2));
+    });
+    it("should invalidate for points not of same instance", function() {
+      const point1 = new Point(1, 2);
+      const point2 = { x: 1, x: 2 };
+      assert.isFalse(point1.isEqualTo(point2));
+    });
+    it("should invalidate for points having different x co - ordinate", function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(4, 2);
+      assert.isFalse(point1.isEqualTo(point2));
+    });
+    it("should invalidate for points having different y co - ordinate", function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1, 4);
+      assert.isFalse(point1.isEqualTo(point2));
+    });
+  });
 });
