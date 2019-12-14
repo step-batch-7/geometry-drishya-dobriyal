@@ -169,10 +169,22 @@ describe("line", function() {
 
   describe("findX", function() {
     it("should give the value of x axis co-ordinate when y co ordinate given is between the range", function() {
+      const endA = { x: 2, y: 1 };
+      const endB = { x: 4, y: 5 };
+      const line1 = new Line(endA, endB);
+      assert.strictEqual(line1.findX(3), 3);
+    });
+    it("should give not a number when the value of  y-axis co ordinate given is more than the line segment range", function() {
       const endA = { x: 3, y: 4 };
       const endB = { x: 9, y: 10 };
       const line1 = new Line(endA, endB);
-      assert.strictEqual(line1.findX(5), 4);
+      assert.isNaN(line1.findX(19));
+    });
+    it("should give not a number when the value of  y-axis co ordinate given is less than the line segment range", function() {
+      const endA = { x: 3, y: 4 };
+      const endB = { x: 9, y: 10 };
+      const line1 = new Line(endA, endB);
+      assert.isNaN(line1.findX(2));
     });
   });
 
@@ -182,6 +194,33 @@ describe("line", function() {
       const endB = { x: 9, y: 10 };
       const line1 = new Line(endA, endB);
       assert.strictEqual(line1.findY(6), 7);
+    });
+    it("should give not a number when the value of  x-axis co ordinate given is more than the line segment range", function() {
+      const endA = { x: 3, y: 4 };
+      const endB = { x: 9, y: 10 };
+      const line1 = new Line(endA, endB);
+      assert.isNaN(line1.findY(19));
+    });
+    it("should give not a number when the value of  x-axis co ordinate given is less than the line segment range", function() {
+      const endA = { x: 3, y: 4 };
+      const endB = { x: 9, y: 10 };
+      const line1 = new Line(endA, endB);
+      assert.isNaN(line1.findY(2));
+    });
+  });
+
+  describe("hasPoint", function() {
+    it("should return true if the point lies in that line ", function() {
+      const endA = { x: 2, y: 1 };
+      const endB = { x: 4, y: 5 };
+      const line1 = new Line(endA, endB);
+      assert.ok(line1.hasPoint({ x: 3, y: 3 }));
+    });
+    it("should return false if the point not in line ", function() {
+      const endA = { x: 0, y: 0 };
+      const endB = { x: 6, y: 16 };
+      const line1 = new Line(endA, endB);
+      assert.isFalse(line1.hasPoint({ x: 3, y: 3 }));
     });
   });
 });

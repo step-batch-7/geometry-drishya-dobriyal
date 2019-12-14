@@ -46,10 +46,15 @@ class Line {
     );
   }
   findX(YAxisPoint) {
+    if (YAxisPoint >= this.endB.y || YAxisPoint <= this.endA.x) return NaN;
     return (YAxisPoint - this.endA.y) / this.slope + this.endA.x;
   }
   findY(XAxisPoint) {
+    if (XAxisPoint >= this.endB.x || XAxisPoint <= this.endA.x) return NaN;
     return this.slope * (XAxisPoint - this.endA.x) + this.endA.y;
+  }
+  hasPoint(point) {
+    return this.findX(point.y) === point.x;
   }
 }
 
