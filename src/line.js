@@ -21,7 +21,7 @@ class Line {
   toString() {
     const start = `(${this.endA.x},${this.endA.y})`;
     const end = `(${this.endB.x},${this.endB.y})`;
-    return `line : ${start} and ${end}`;
+    return `[Line ${start} to ${end}]`;
   }
   isEqualTo(shape) {
     return (

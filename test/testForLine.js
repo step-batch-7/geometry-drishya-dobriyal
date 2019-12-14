@@ -4,11 +4,11 @@ const Line = require("../src/line.js");
 describe("line", function() {
   describe("toString", function() {
     it("should return line representation in form of string  ", function() {
-      const endA = { x: 0, y: 0 };
-      const endB = { x: 0, y: 4 };
+      const endA = { x: 1, y: 2 };
+      const endB = { x: 2, y: 3 };
       const line1 = new Line(endA, endB);
       const actualValue = line1.toString();
-      assert.strictEqual(actualValue, "line : (0,0) and (0,4)");
+      assert.strictEqual(actualValue, "[Line (1,2) to (2,3)]");
     });
   });
 
