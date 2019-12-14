@@ -17,8 +17,6 @@ class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
     this.endB = { x: endB.x, y: endB.y };
-    this.XLength = this.endB.x - this.endA.x;
-    this.YLength = this.endB.y - this.endA.y;
   }
   toString() {
     const start = `(${this.endA.x},${this.endA.y})`;
@@ -33,10 +31,12 @@ class Line {
     );
   }
   get length() {
-    return Math.hypot(this.XLength, this.YLength);
+    const XLength = this.endB.x - this.endA.x;
+    const YLength = this.endB.y - this.endA.y;
+    return Math.hypot(XLength, YLength);
   }
   get slope() {
-    return this.YLength / this.XLength;
+    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
   }
   isParallelTo(otherLine) {
     return (
@@ -55,6 +55,15 @@ class Line {
   }
   hasPoint(point) {
     return this.findX(point.y) === point.x;
+  }
+  split() {
+    const XmiddlePoint = (this.endA.x + this.endB.x) / 2;
+    const YmiddlePoint = (this.endA.y + this.endB.y) / 2;
+    const midPoint = { x: XmiddlePoint, y: YmiddlePoint };
+    const line1 = new Line(this.endA, midPoint);
+    const line2 = new Line(midPoint, this.endB);
+    console.log(line1, line2);
+    return [line1, line2];
   }
 }
 

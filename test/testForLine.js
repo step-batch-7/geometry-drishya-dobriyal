@@ -223,4 +223,17 @@ describe("line", function() {
       assert.isFalse(line1.hasPoint({ x: 3, y: 3 }));
     });
   });
+
+  describe("split", function() {
+    it("should give two line split at the middle ", function() {
+      const endA = { x: 2, y: 1 };
+      const endB = { x: 4, y: 5 };
+      const line1 = new Line(endA, endB);
+      const expectedValue = [
+        { endA: { x: 2, y: 1 }, endB: { x: 3, y: 3 } },
+        { endA: { x: 3, y: 3 }, endB: { x: 4, y: 5 } }
+      ];
+      assert.deepStrictEqual(line1.split(), expectedValue);
+    });
+  });
 });
