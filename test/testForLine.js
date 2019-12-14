@@ -120,7 +120,16 @@ describe("line", function() {
       const line2 = new Line(endA, endB);
       assert.ok(line1.isParallelTo(line2));
     });
-    it("should invalidate if two line are not parallel ", function() {
+    it("should validate if two line have equal slope and equal intercept ", function() {
+      let endA = { x: 1, y: 0 };
+      let endB = { x: 0, y: 4 };
+      const line1 = new Line(endA, endB);
+      endA = { x: 1, y: 7 };
+      endB = { x: 0, y: 11 };
+      const line2 = new Line(endA, endB);
+      assert.ok(line1.isParallelTo(line2));
+    });
+    it("should invalidate if two line have diff slope ", function() {
       let endA = { x: 5, y: 0 };
       let endB = { x: 1, y: 4 };
       const line1 = new Line(endA, endB);

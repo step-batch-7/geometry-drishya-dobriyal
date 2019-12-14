@@ -2,6 +2,17 @@ const arePointsEqual = function(object1, object2) {
   return object1.x == object2.x && object1.y == object2.y;
 };
 
+const areIntercepDiff = function(line1, line2) {
+  const line1Yintercept = line1.endA.y - line1.slope * line1.endA.x;
+  const line2Yintercept = line2.endA.y - line2.slope * line2.endA.x;
+  if (line1Yintercept != line2Yintercept && line2Yintercept != Infinity) {
+    return true;
+  }
+  const line1XIntercept = (line1.endA.y - line1Yintercept) / line1.slope;
+  const line2XIntercept = (line2.endA.y - line2Yintercept) / line2.slope;
+  return !(line1XIntercept === line2XIntercept);
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -28,7 +39,11 @@ class Line {
     return this.YLength / this.XLength;
   }
   isParallelTo(otherLine) {
-    return otherLine instanceof Line && otherLine.slope === this.slope;
+    return (
+      otherLine instanceof Line &&
+      otherLine.slope === this.slope &&
+      areIntercepDiff(otherLine, this)
+    );
   }
 }
 
