@@ -166,4 +166,22 @@ describe("line", function() {
       assert.strictEqual(line1.slope, 0);
     });
   });
+
+  describe("findX", function() {
+    it("should give the value of x axis co-ordinate when y co ordinate given is between the range", function() {
+      const endA = { x: 3, y: 4 };
+      const endB = { x: 9, y: 10 };
+      const line1 = new Line(endA, endB);
+      assert.strictEqual(line1.findX(5), 4);
+    });
+  });
+
+  describe("findY", function() {
+    it("should give the value of y axis co-ordinate when x co ordinate given is between the range", function() {
+      const endA = { x: 3, y: 4 };
+      const endB = { x: 9, y: 10 };
+      const line1 = new Line(endA, endB);
+      assert.strictEqual(line1.findY(6), 7);
+    });
+  });
 });

@@ -45,6 +45,12 @@ class Line {
       areIntercepDiff(otherLine, this)
     );
   }
+  findX(YAxisPoint) {
+    return (YAxisPoint - this.endA.y) / this.slope + this.endA.x;
+  }
+  findY(XAxisPoint) {
+    return this.slope * (XAxisPoint - this.endA.x) + this.endA.y;
+  }
 }
 
 module.exports = Line;
