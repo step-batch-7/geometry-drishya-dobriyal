@@ -6,6 +6,8 @@ class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
     this.endB = { x: endB.x, y: endB.y };
+    this.XLength = this.endB.x - this.endA.x;
+    this.YLength = this.endB.y - this.endA.y;
   }
   toString() {
     const start = `(${this.endA.x},${this.endA.y})`;
@@ -20,14 +22,10 @@ class Line {
     );
   }
   get length() {
-    const XLength = this.endA.x - this.endB.x;
-    const YLength = this.endA.y - this.endB.y;
-    return Math.hypot(XLength, YLength);
+    return Math.hypot(this.XLength, this.YLength);
   }
   get slope() {
-    const XLength = this.endB.x - this.endA.x;
-    const YLength = this.endB.y - this.endA.y;
-    return YLength / XLength;
+    return this.YLength / this.XLength;
   }
   isParallelTo(otherLine) {
     return otherLine instanceof Line && otherLine.slope === this.slope;
