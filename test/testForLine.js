@@ -226,14 +226,18 @@ describe("line", function() {
 
   describe("split", function() {
     it("should give two line split at the middle ", function() {
-      const endA = { x: 2, y: 1 };
-      const endB = { x: 4, y: 5 };
+      let endA = { x: 2, y: 1 };
+      let endB = { x: 4, y: 5 };
       const line1 = new Line(endA, endB);
-      const expectedValue = [
-        { endA: { x: 2, y: 1 }, endB: { x: 3, y: 3 } },
-        { endA: { x: 3, y: 3 }, endB: { x: 4, y: 5 } }
-      ];
-      assert.deepStrictEqual(line1.split(), expectedValue);
+      const actualValue = line1.split();
+      endA = { x: 2, y: 1 };
+      endB = { x: 3, y: 3 };
+      const endAhalf = new Line(endA, endB);
+      endA = { x: 3, y: 3 };
+      endB = { x: 4, y: 5 };
+      const endBhalf = new Line(endA, endB);
+      const expectedValue = [endAhalf, endBhalf];
+      assert.deepStrictEqual(actualValue, expectedValue);
     });
   });
 });

@@ -62,7 +62,6 @@ class Line {
     const midPoint = { x: XmiddlePoint, y: YmiddlePoint };
     const line1 = new Line(this.endA, midPoint);
     const line2 = new Line(midPoint, this.endB);
-    console.log(line1, line2);
     return [line1, line2];
   }
 }
