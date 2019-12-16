@@ -243,7 +243,7 @@ describe("line", function() {
   });
 
   describe("findPointfromStart", function() {
-    it("should give the point from a distance from the starting  of the line ", function() {
+    it("should give the point from a distance from the starting  of the line is less than the length of line", function() {
       const endA = { x: 4, y: 0 };
       const endB = { x: 8, y: 0 };
       const line1 = new Line(endA, endB);
@@ -251,7 +251,7 @@ describe("line", function() {
       const actualValue = line1.findPointFromStart(2);
       assert.deepStrictEqual(actualValue, point1);
     });
-    it("should give null if a distance from the starting of the line ", function() {
+    it("should give null if a distance from the starting of the line is more than the length of line", function() {
       const endA = { x: 4, y: 0 };
       const endB = { x: 6, y: 0 };
       const line1 = new Line(endA, endB);
@@ -261,7 +261,7 @@ describe("line", function() {
   });
 
   describe("findPointfromEnd", function() {
-    it("should give the point from a distance from the end of the line is more than the length of line", function() {
+    it("should give the point from a distance from the end of the line is less than the length of line", function() {
       const endA = { x: 4, y: 0 };
       const endB = { x: 8, y: 0 };
       const line1 = new Line(endA, endB);
