@@ -8,7 +8,7 @@ const arePointsCollinear = function(p1, p2, p3) {
 
 const areInRange = function(midPoint, point1, point2) {
   if (point1 > point2) {
-    return point2 <= midPoint && midPoint <= point1;
+    [point1, point2] = [point2, point1];
   }
   return point2 >= midPoint && midPoint >= point1;
 };
