@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Point = require("../src/point.js");
+const Line = require("../src/line.js");
 
 describe("point", function() {
   describe("toString", function() {
@@ -91,6 +92,25 @@ describe("point", function() {
       const point2 = { x: 3, y: 3 };
       const actualValue = point1.findDistanceTo(point2);
       assert.isNaN(actualValue);
+    });
+  });
+
+  describe("isOn", function() {
+    it("should give true if line specified has the point in it", function() {
+      const point1 = new Point(2, 0);
+      const endA = { x: 0, y: 0 };
+      const endB = { x: 4, y: 0 };
+      const line1 = new Line(endA, endB);
+      const actualValue = point1.isOn(line1);
+      assert.ok(actualValue);
+    });
+    it("should give false if line specified does not have the point in it", function() {
+      const point1 = new Point(6, 0);
+      const endA = { x: 0, y: 0 };
+      const endB = { x: 4, y: 0 };
+      const line1 = new Line(endA, endB);
+      const actualValue = point1.isOn(line1);
+      assert.isFalse(actualValue);
     });
   });
 });

@@ -23,6 +23,9 @@ class Point {
     }
     return NaN;
   }
+  isOn(line) {
+    return line.hasPoint(this);
+  }
 }
 
 module.exports = Point;

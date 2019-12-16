@@ -66,7 +66,7 @@ class Line {
     return NaN;
   }
   hasPoint(point) {
-    return this.findX(point.y) === point.x;
+    return this.findX(point.y) === point.x || this.findY(point.x) === point.y;
   }
   split() {
     const XmiddlePoint = (this.endA.x + this.endB.x) / 2;
