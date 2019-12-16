@@ -1,9 +1,5 @@
 const Point = require("./point.js");
 
-const arePointsEqual = function(object1, object2) {
-  return object1.x == object2.x && object1.y == object2.y;
-};
-
 const arePointsCollinear = function(p1, p2, p3) {
   return (
     p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y) === 0
@@ -23,8 +19,8 @@ const calcCoOrdinate = function(ratio, coOrdinate1, coOrdinate2) {
 
 class Line {
   constructor(endA, endB) {
-    this.endA = { x: endA.x, y: endA.y };
-    this.endB = { x: endB.x, y: endB.y };
+    this.endA = new Point(endA.x, endA.y);
+    this.endB = new Point(endB.x, endB.y);
   }
   toString() {
     const start = `(${this.endA.x},${this.endA.y})`;
@@ -34,8 +30,8 @@ class Line {
   isEqualTo(shape) {
     return (
       shape instanceof Line &&
-      arePointsEqual(this.endA, shape.endA) &&
-      arePointsEqual(this.endB, shape.endB)
+      this.endA.isEqualTo(shape.endA) &&
+      this.endB.isEqualTo(shape.endB)
     );
   }
   get length() {
