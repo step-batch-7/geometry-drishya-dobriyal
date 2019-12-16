@@ -15,6 +15,9 @@ class Circle {
       other.coOrdinates.isEqualTo(this.coOrdinates)
     );
   }
+  get area() {
+    return (22 / 7) * this.radius ** 2;
+  }
 }
 
 module.exports = Circle;

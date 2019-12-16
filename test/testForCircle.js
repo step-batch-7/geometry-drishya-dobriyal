@@ -31,4 +31,11 @@ describe("circle", function() {
       assert.isFalse(circle.isEqual(circle1));
     });
   });
+
+  describe("area", function() {
+    it("should give the area of the given circle", function() {
+      const circle = new Circle({ x: 3, y: 0 }, 7);
+      assert.strictEqual(circle.area, 154);
+    });
+  });
 });
