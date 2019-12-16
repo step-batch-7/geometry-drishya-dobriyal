@@ -67,24 +67,20 @@ class Line {
     return [line1, line2];
   }
   findPointFromStart(distance) {
-    if (this.length >= distance) {
-      const distanceEndToPoint = this.length - distance;
-      const lengthRatio = distanceEndToPoint / distance;
-      const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.x, this.endB.x);
-      const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.y, this.endB.y);
-      return new Point(xCoOrdinate, yCoOrdinate);
-    }
-    return null;
+    if (this.length < distance) return null;
+    const distanceEndToPoint = this.length - distance;
+    const lengthRatio = distanceEndToPoint / distance;
+    const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.x, this.endB.x);
+    const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.y, this.endB.y);
+    return new Point(xCoOrdinate, yCoOrdinate);
   }
   findPointFromEnd(distance) {
-    if (this.length >= distance) {
-      const distanceEndToPoint = this.length - distance;
-      const lengthRatio = distanceEndToPoint / distance;
-      const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.x, this.endA.x);
-      const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.y, this.endA.y);
-      return new Point(xCoOrdinate, yCoOrdinate);
-    }
-    return null;
+    if (this.length < distance) return null;
+    const distanceEndToPoint = this.length - distance;
+    const lengthRatio = distanceEndToPoint / distance;
+    const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.x, this.endA.x);
+    const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.y, this.endA.y);
+    return new Point(xCoOrdinate, yCoOrdinate);
   }
 }
 
