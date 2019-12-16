@@ -8,6 +8,13 @@ const arePointsCollinear = function(p1, p2, p3) {
   );
 };
 
+const areInRange = function(midPoint, point1, point2) {
+  if (point1 > point2) {
+    return point2 <= midPoint && midPoint <= point1;
+  }
+  return point2 >= midPoint && midPoint >= point1;
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -41,12 +48,16 @@ class Line {
     );
   }
   findX(YAxisPoint) {
-    if (YAxisPoint >= this.endB.y || YAxisPoint <= this.endA.x) return NaN;
-    return (YAxisPoint - this.endA.y) / this.slope + this.endA.x;
+    if (areInRange(YAxisPoint, this.endB.y, this.endA.y)) {
+      return (YAxisPoint - this.endA.y) / this.slope + this.endA.x;
+    }
+    return NaN;
   }
   findY(XAxisPoint) {
-    if (XAxisPoint >= this.endB.x || XAxisPoint <= this.endA.x) return NaN;
-    return this.slope * (XAxisPoint - this.endA.x) + this.endA.y;
+    if (areInRange(XAxisPoint, this.endB.x, this.endA.x)) {
+      return this.slope * (XAxisPoint - this.endA.x) + this.endA.y;
+    }
+    return NaN;
   }
   hasPoint(point) {
     return this.findX(point.y) === point.x;
