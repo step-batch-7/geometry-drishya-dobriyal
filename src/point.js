@@ -21,8 +21,8 @@ class Point {
     const dy = otherpoint.y - this.y;
     return Math.hypot(dx, dy);
   }
-  isOn(line) {
-    return line.hasPoint(this);
+  isOn(shape) {
+    return shape.hasPoint(this);
   }
 }
 

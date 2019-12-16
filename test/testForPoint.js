@@ -1,6 +1,7 @@
 const assert = require("chai").assert;
 const Point = require("../src/point.js");
 const Line = require("../src/line.js");
+const Circle = require("../src/circle.js");
 
 describe("point", function() {
   describe("toString", function() {
@@ -111,6 +112,21 @@ describe("point", function() {
       const line1 = new Line(endA, endB);
       const actualValue = point1.isOn(line1);
       assert.isFalse(actualValue);
+    });
+    it("should be true if the point is in the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 7);
+      assert.isOk(circle.hasPoint(point));
+    });
+    it("should be false if the point is outside the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 8);
+      assert.isFalse(circle.hasPoint(point));
+    });
+    it("should be false if the point is inside the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 4);
+      assert.isFalse(circle.hasPoint(point));
     });
   });
 });
