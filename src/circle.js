@@ -18,6 +18,9 @@ class Circle {
   get area() {
     return (22 / 7) * this.radius ** 2;
   }
+  get perimeter() {
+    return 2 * (22 / 7) * this.radius;
+  }
 }
 
 module.exports = Circle;

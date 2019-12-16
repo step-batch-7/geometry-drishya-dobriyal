@@ -38,4 +38,11 @@ describe("circle", function() {
       assert.strictEqual(circle.area, 154);
     });
   });
+
+  describe("permiter", function() {
+    it("should give the perimeter of the given circle", function() {
+      const circle = new Circle({ x: 3, y: 0 }, 7);
+      assert.strictEqual(circle.perimeter, 44);
+    });
+  });
 });
