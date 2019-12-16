@@ -2,15 +2,10 @@ const arePointsEqual = function(object1, object2) {
   return object1.x == object2.x && object1.y == object2.y;
 };
 
-const areIntercepDiff = function(line1, line2) {
-  const line1Yintercept = line1.endA.y - line1.slope * line1.endA.x;
-  const line2Yintercept = line2.endA.y - line2.slope * line2.endA.x;
-  if (line1Yintercept != line2Yintercept && line2Yintercept != Infinity) {
-    return true;
-  }
-  const line1XIntercept = (line1.endA.y - line1Yintercept) / line1.slope;
-  const line2XIntercept = (line2.endA.y - line2Yintercept) / line2.slope;
-  return !(line1XIntercept === line2XIntercept);
+const arePointsCollinear = function(p1, p2, p3) {
+  return (
+    p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y) === 0
+  );
 };
 
 class Line {
@@ -42,7 +37,7 @@ class Line {
     return (
       otherLine instanceof Line &&
       otherLine.slope === this.slope &&
-      areIntercepDiff(otherLine, this)
+      !arePointsCollinear(this.endA, this.endB, otherLine.endA)
     );
   }
   findX(YAxisPoint) {
