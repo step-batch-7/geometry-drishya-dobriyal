@@ -56,4 +56,41 @@ describe("point", function() {
       assert.strictEqual(actualValue, 6);
     });
   });
+
+  describe("findDistanceTo", function() {
+    it("should give the shortest distance between two points that make horizontal line", function() {
+      const point1 = new Point(3, 0);
+      const point2 = new Point(4, 0);
+      const actualValue = point1.findDistanceTo(point2);
+      const expectedValue = 1;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+    it("should give the shortest distance between two points that make vertical line ", function() {
+      const point1 = new Point(0, 3);
+      const point2 = new Point(0, 4);
+      const actualValue = point1.findDistanceTo(point2);
+      const expectedValue = 1;
+      assert.strictEqual(actualValue, expectedValue);
+    });
+    it("should give the shortest distance between two points that make positive slanting line ", function() {
+      const point1 = new Point(3, 3);
+      const point2 = new Point(4, 4);
+      const actualValue = point1.findDistanceTo(point2);
+      const expectedValue = 1.4;
+      assert.approximately(actualValue, expectedValue, 0.5);
+    });
+    it("should give the shortest distance between two points that make negative slanting line ", function() {
+      const point1 = new Point(4, 4);
+      const point2 = new Point(3, 3);
+      const actualValue = point1.findDistanceTo(point2);
+      const expectedValue = 1.4;
+      assert.approximately(actualValue, expectedValue, 0.5);
+    });
+    it("should give NaN if the point given is not an instance of Point class", function() {
+      const point1 = new Point(4, 4);
+      const point2 = { x: 3, y: 3 };
+      const actualValue = point1.findDistanceTo(point2);
+      assert.isNaN(actualValue);
+    });
+  });
 });

@@ -15,6 +15,14 @@ class Point {
   visit(functionRef) {
     return functionRef(this.x, this.y);
   }
+  findDistanceTo(otherpoint) {
+    if (otherpoint instanceof Point) {
+      const dx = otherpoint.x - this.x;
+      const dy = otherpoint.y - this.y;
+      return Math.hypot(dx, dy);
+    }
+    return NaN;
+  }
 }
 
 module.exports = Point;
