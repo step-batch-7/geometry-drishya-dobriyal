@@ -16,12 +16,10 @@ class Point {
     return functionRef(this.x, this.y);
   }
   findDistanceTo(otherpoint) {
-    if (otherpoint instanceof Point) {
-      const dx = otherpoint.x - this.x;
-      const dy = otherpoint.y - this.y;
-      return Math.hypot(dx, dy);
-    }
-    return NaN;
+    if (!(otherpoint instanceof Point)) return NaN;
+    const dx = otherpoint.x - this.x;
+    const dy = otherpoint.y - this.y;
+    return Math.hypot(dx, dy);
   }
   isOn(line) {
     return line.hasPoint(this);
