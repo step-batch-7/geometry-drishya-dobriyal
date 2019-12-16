@@ -48,16 +48,12 @@ class Line {
     );
   }
   findX(YAxisPoint) {
-    if (areInRange(YAxisPoint, this.endB.y, this.endA.y)) {
-      return (YAxisPoint - this.endA.y) / this.slope + this.endA.x;
-    }
-    return NaN;
+    if (!areInRange(YAxisPoint, this.endB.y, this.endA.y)) return NaN;
+    return (YAxisPoint - this.endA.y) / this.slope + this.endA.x;
   }
   findY(XAxisPoint) {
-    if (areInRange(XAxisPoint, this.endB.x, this.endA.x)) {
-      return this.slope * (XAxisPoint - this.endA.x) + this.endA.y;
-    }
-    return NaN;
+    if (!areInRange(XAxisPoint, this.endB.x, this.endA.x)) return NaN;
+    return this.slope * (XAxisPoint - this.endA.x) + this.endA.y;
   }
   hasPoint(point) {
     return this.findX(point.y) === point.x || this.findY(point.x) === point.y;
