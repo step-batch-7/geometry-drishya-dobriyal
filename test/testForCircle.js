@@ -53,5 +53,15 @@ describe("circle", function() {
       const point = new Point(0, 7);
       assert.isOk(circle.hasPoint(point));
     });
+    it("should be false if the point is outside the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 8);
+      assert.isFalse(circle.hasPoint(point));
+    });
+    it("should be false if the point is inside the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 4);
+      assert.isFalse(circle.hasPoint(point));
+    });
   });
 });
