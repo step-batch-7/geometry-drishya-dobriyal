@@ -12,6 +12,9 @@ class Point {
   isEqualTo(other) {
     return other instanceof Point && other.x == this.x && other.y == this.y;
   }
+  visit(functionRef) {
+    return functionRef(this.x, this.y);
+  }
 }
 
 module.exports = Point;

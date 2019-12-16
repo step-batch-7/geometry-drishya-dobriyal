@@ -37,5 +37,23 @@ describe("point", function() {
       const point2 = new Point(1, 4);
       assert.isFalse(point1.isEqualTo(point2));
     });
+    it("should invalidate for points having different x and y co - ordinate", function() {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(5, 4);
+      assert.isFalse(point1.isEqualTo(point2));
+    });
+  });
+
+  describe("visit", function() {
+    it("should do the addition operation with the parameter passed ", function() {
+      const point1 = new Point(2, 3);
+      const actualValue = point1.visit((x, y) => x + y);
+      assert.strictEqual(actualValue, 5);
+    });
+    it("should do the multiplication operation with the parameter passed ", function() {
+      const point1 = new Point(2, 3);
+      const actualValue = point1.visit((x, y) => x * y);
+      assert.strictEqual(actualValue, 6);
+    });
   });
 });
