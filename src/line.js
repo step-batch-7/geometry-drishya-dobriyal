@@ -58,14 +58,6 @@ class Line {
   hasPoint(point) {
     return this.findX(point.y) === point.x || this.findY(point.x) === point.y;
   }
-  split() {
-    const XmiddlePoint = (this.endA.x + this.endB.x) / 2;
-    const YmiddlePoint = (this.endA.y + this.endB.y) / 2;
-    const midPoint = { x: XmiddlePoint, y: YmiddlePoint };
-    const line1 = new Line(this.endA, midPoint);
-    const line2 = new Line(midPoint, this.endB);
-    return [line1, line2];
-  }
   findPointFromStart(distance) {
     if (this.length < distance) return null;
     const distanceEndToPoint = this.length - distance;
@@ -81,6 +73,13 @@ class Line {
     const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.x, this.endA.x);
     const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.y, this.endA.y);
     return new Point(xCoOrdinate, yCoOrdinate);
+  }
+  split() {
+    const distance = this.length / 2;
+    const midPoint = this.findPointFromStart(distance);
+    const line1 = new Line(this.endA, midPoint);
+    const line2 = new Line(midPoint, this.endB);
+    return [line1, line2];
   }
 }
 
