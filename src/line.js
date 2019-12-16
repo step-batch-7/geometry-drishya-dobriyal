@@ -6,11 +6,11 @@ const arePointsCollinear = function(p1, p2, p3) {
   );
 };
 
-const areInRange = function(midPoint, point1, point2) {
+const areInRange = function(point, point1, point2) {
   if (point1 > point2) {
     [point1, point2] = [point2, point1];
   }
-  return point2 >= midPoint && midPoint >= point1;
+  return point2 >= point && point >= point1;
 };
 
 const calcCoOrdinate = function(ratio, coOrdinate1, coOrdinate2) {
@@ -68,11 +68,7 @@ class Line {
   }
   findPointFromEnd(distance) {
     if (this.length < distance) return null;
-    const distanceEndToPoint = this.length - distance;
-    const lengthRatio = distanceEndToPoint / distance;
-    const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.x, this.endA.x);
-    const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.y, this.endA.y);
-    return new Point(xCoOrdinate, yCoOrdinate);
+    return this.findPointFromStart(this.length - distance);
   }
   split() {
     const distance = this.length / 2;
