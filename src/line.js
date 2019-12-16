@@ -35,9 +35,7 @@ class Line {
     );
   }
   get length() {
-    const XLength = this.endB.x - this.endA.x;
-    const YLength = this.endB.y - this.endA.y;
-    return Math.hypot(XLength, YLength);
+    return this.endA.findDistanceTo(this.endB);
   }
   get slope() {
     return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
