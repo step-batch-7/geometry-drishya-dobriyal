@@ -1,3 +1,5 @@
+const Point = require("./point.js");
+
 const arePointsEqual = function(object1, object2) {
   return object1.x == object2.x && object1.y == object2.y;
 };
@@ -13,6 +15,10 @@ const areInRange = function(midPoint, point1, point2) {
     return point2 <= midPoint && midPoint <= point1;
   }
   return point2 >= midPoint && midPoint >= point1;
+};
+
+const calcCoOrdinate = function(ratio, coOrdinate1, coOrdinate2) {
+  return (ratio * coOrdinate2 + coOrdinate1) / (ratio + 1);
 };
 
 class Line {
@@ -69,6 +75,26 @@ class Line {
     const line1 = new Line(this.endA, midPoint);
     const line2 = new Line(midPoint, this.endB);
     return [line1, line2];
+  }
+  findPointFromStart(distance) {
+    if (this.length >= distance) {
+      const distanceEndToPoint = this.length - distance;
+      const lengthRatio = distanceEndToPoint / distance;
+      const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.x, this.endB.x);
+      const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.y, this.endB.y);
+      return new Point(xCoOrdinate, yCoOrdinate);
+    }
+    return null;
+  }
+  findPointFromEnd(distance) {
+    if (this.length >= distance) {
+      const distanceEndToPoint = this.length - distance;
+      const lengthRatio = distanceEndToPoint / distance;
+      const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.x, this.endA.x);
+      const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endB.y, this.endA.y);
+      return new Point(xCoOrdinate, yCoOrdinate);
+    }
+    return null;
   }
 }
 

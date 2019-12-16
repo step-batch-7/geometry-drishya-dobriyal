@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Line = require("../src/line.js");
+const Point = require("../src/point.js");
 
 describe("line", function() {
   describe("toString", function() {
@@ -238,6 +239,42 @@ describe("line", function() {
       const endBhalf = new Line(endA, endB);
       const expectedValue = [endAhalf, endBhalf];
       assert.deepStrictEqual(actualValue, expectedValue);
+    });
+  });
+
+  describe("findPointfromStart", function() {
+    it("should give the point from a distance from the starting  of the line ", function() {
+      const endA = { x: 4, y: 0 };
+      const endB = { x: 8, y: 0 };
+      const line1 = new Line(endA, endB);
+      const point1 = new Point(6, 0);
+      const actualValue = line1.findPointFromStart(2);
+      assert.deepStrictEqual(actualValue, point1);
+    });
+    it("should give null if a distance from the starting of the line ", function() {
+      const endA = { x: 4, y: 0 };
+      const endB = { x: 6, y: 0 };
+      const line1 = new Line(endA, endB);
+      const actualValue = line1.findPointFromStart(4);
+      assert.deepStrictEqual(actualValue, null);
+    });
+  });
+
+  describe("findPointfromEnd", function() {
+    it("should give the point from a distance from the end of the line is more than the length of line", function() {
+      const endA = { x: 4, y: 0 };
+      const endB = { x: 8, y: 0 };
+      const line1 = new Line(endA, endB);
+      const point1 = new Point(6, 0);
+      const actualValue = line1.findPointFromEnd(2);
+      assert.deepStrictEqual(actualValue, point1);
+    });
+    it("should give null if a distance from the end of the line is more than the length of line", function() {
+      const endA = { x: 4, y: 0 };
+      const endB = { x: 6, y: 0 };
+      const line1 = new Line(endA, endB);
+      const actualValue = line1.findPointFromEnd(3);
+      assert.deepStrictEqual(actualValue, null);
     });
   });
 });
