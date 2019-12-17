@@ -215,13 +215,15 @@ describe("line", function() {
       const endA = { x: 2, y: 1 };
       const endB = { x: 4, y: 5 };
       const line1 = new Line(endA, endB);
-      assert.ok(line1.hasPoint({ x: 3, y: 3 }));
+      const point = new Point(3, 3);
+      assert.ok(line1.hasPoint(point));
     });
     it("should return false if the point not in line ", function() {
       const endA = { x: 0, y: 0 };
       const endB = { x: 6, y: 16 };
       const line1 = new Line(endA, endB);
-      assert.isFalse(line1.hasPoint({ x: 3, y: 3 }));
+      const point = new Point(3, 3);
+      assert.isFalse(line1.hasPoint(point));
     });
   });
 
