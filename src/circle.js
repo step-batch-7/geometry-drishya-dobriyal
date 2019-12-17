@@ -27,6 +27,9 @@ class Circle {
   moveTo(newCentre) {
     return new Circle(newCentre, this.radius);
   }
+  covers(other) {
+    return this.radius >= other.findDistanceTo(this.coOrdinates);
+  }
 }
 
 module.exports = Circle;

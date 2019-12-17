@@ -64,11 +64,30 @@ describe("circle", function() {
       assert.isFalse(circle.hasPoint(point));
     });
   });
+
   describe("moveTo", function() {
     it("should give a new circle of given co-ordinates with the same dimention as the original circle", function() {
       const circle1 = new Circle({ x: 2, y: 2 }, 5);
       const circle2 = new Circle({ x: 1, y: 1 }, 5);
       assert.deepStrictEqual(circle1.moveTo({ x: 1, y: 1 }), circle2);
+    });
+  });
+
+  describe("covers", function() {
+    it("should be true if the point is in the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 7);
+      assert.isOk(circle.covers(point));
+    });
+    it("should be true if the point is inside the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 4);
+      assert.ok(circle.covers(point));
+    });
+    it("should be false if the point is outside the circumference of the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 7);
+      const point = new Point(0, 8);
+      assert.isFalse(circle.covers(point));
     });
   });
 });
