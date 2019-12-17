@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Rectangle = require("../src/rectangle.js");
+const Point = require("../src/point.js");
 
 describe("rectangle", function() {
   describe("toString", function() {
@@ -13,6 +14,11 @@ describe("rectangle", function() {
     it("should give true if other shape is instance of the rectangle and have same co - ordinates as the rectangle", function() {
       const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
       const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      assert.isOk(rectangle1.isEqualTo(rectangle2));
+    });
+    it.skip("should give true if other shape is instance of the rectangle and have same co - ordinates as the rectangle but interchanged", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      const rectangle2 = new Rectangle({ x: 2, y: 3 }, { x: 1, y: 1 });
       assert.isOk(rectangle1.isEqualTo(rectangle2));
     });
     it("should give false if other shape not an instance of the rectangle but have same co - ordinates as the rectangle", function() {
@@ -49,6 +55,14 @@ describe("rectangle", function() {
     it("should give perimeter as twice of length of a given rectangle if diagonal is vertical", function() {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 0 });
       assert.strictEqual(rectangle1.perimeter, 6);
+    });
+  });
+
+  describe.skip("hasPoint", function() {
+    it("should validate for a point that is instance that rectangle ", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
+      const point = new Point(0, 1);
+      assert.isOk(rectangle1.hasPoint(point));
     });
   });
 });

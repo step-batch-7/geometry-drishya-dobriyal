@@ -3,9 +3,9 @@ const Point = require("./point.js");
 class Rectangle {
   constructor(endA, endC) {
     this.endA = new Point(endA.x, endA.y);
-    this.endB = new Point(endC.x, endA.y);
+    //this.endB = new Point(endC.x, endA.y);
     this.endC = new Point(endC.x, endC.y);
-    this.endD = new Point(endA.x, endC.y);
+    //this.endD = new Point(endA.x, endC.y);
   }
   toString() {
     return `[Rectangle (${this.endA.x},${this.endA.y}) to (${this.endC.x},${this.endC.y})]`;

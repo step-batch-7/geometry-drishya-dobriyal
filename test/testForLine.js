@@ -14,11 +14,18 @@ describe("line", function() {
   });
 
   describe("isEqualTo", function() {
-    it("should be true if line are equal ", function() {
+    it("should be true if lines are equal ", function() {
       const endA = { x: 0, y: 0 };
       const endB = { x: 0, y: 4 };
       const line1 = new Line(endA, endB);
       const comparedWithLine = new Line(endA, endB);
+      assert.ok(line1.isEqualTo(comparedWithLine));
+    });
+    it("should return true if the line given is just having reverse order of co-ordinates", function() {
+      const endA = { x: 0, y: 0 };
+      const endB = { x: 0, y: 4 };
+      const line1 = new Line(endA, endB);
+      const comparedWithLine = new Line(endB, endA);
       assert.ok(line1.isEqualTo(comparedWithLine));
     });
     it("should be false if shape is not instance of Line", function() {

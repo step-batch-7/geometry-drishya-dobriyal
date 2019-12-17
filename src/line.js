@@ -28,10 +28,10 @@ class Line {
     return `[Line ${start} to ${end}]`;
   }
   isEqualTo(shape) {
+    if (!(shape instanceof Line)) return false;
     return (
-      shape instanceof Line &&
-      this.endA.isEqualTo(shape.endA) &&
-      this.endB.isEqualTo(shape.endB)
+      (this.endA.isEqualTo(shape.endA) && this.endB.isEqualTo(shape.endB)) ||
+      (this.endA.isEqualTo(shape.endB) && this.endB.isEqualTo(shape.endA))
     );
   }
   get length() {
