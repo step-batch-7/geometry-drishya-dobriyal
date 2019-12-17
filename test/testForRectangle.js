@@ -21,4 +21,11 @@ describe("rectangle", function() {
       assert.isFalse(rectangle1.isEqualTo(rectangle2));
     });
   });
+
+  describe("area", function() {
+    it("should give area of a given rectangle", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
+      assert.strictEqual(rectangle1.area, 6);
+    });
+  });
 });

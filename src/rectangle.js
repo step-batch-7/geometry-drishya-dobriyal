@@ -5,7 +5,6 @@ class Rectangle {
   constructor(endA, endC) {
     this.endA = new Point(endA.x, endA.y);
     this.endC = new Point(endC.x, endC.y);
-    this.diagonal = new Line(endA, endC);
   }
   toString() {
     return `[Rectangle (${this.endA.x},${this.endA.y}) to (${this.endC.x},${this.endC.y})]`;
@@ -13,8 +12,12 @@ class Rectangle {
   isEqualTo(otherShape) {
     return (
       otherShape instanceof Rectangle &&
-      otherShape.diagonal.isEqualTo(this.diagonal)
+      otherShape.endA.isEqualTo(this.endA) &&
+      otherShape.endC.isEqualTo(this.endC)
     );
+  }
+  get area() {
+    return (this.endC.y - this.endA.y) * (this.endC.x - this.endA.x);
   }
 }
 
