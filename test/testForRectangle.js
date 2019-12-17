@@ -64,5 +64,15 @@ describe("rectangle", function() {
       const point = new Point(2, 0);
       assert.isOk(rectangle1.hasPoint(point));
     });
+    it("should invalidate for a point that lies inside that rectangle ", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
+      const point = new Point(1, 1);
+      assert.isFalse(rectangle1.hasPoint(point));
+    });
+    it("should invalidate for a point that lies outside that rectangle ", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
+      const point = new Point(5, 4);
+      assert.isFalse(rectangle1.hasPoint(point));
+    });
   });
 });
