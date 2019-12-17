@@ -6,9 +6,9 @@ class Circle {
     this.radius = radius;
   }
   toString() {
-    return `[Circle @(${this.coOrdinates.x},${this.coOrdinates.y}) radius ${this.radius}`;
+    return `[Circle @(${this.coOrdinates.x},${this.coOrdinates.y}) radius ${this.radius}]`;
   }
-  isEqual(other) {
+  isEqualTo(other) {
     return (
       other instanceof Circle &&
       other.radius == this.radius &&
