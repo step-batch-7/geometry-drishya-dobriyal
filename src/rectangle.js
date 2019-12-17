@@ -1,6 +1,13 @@
 const Point = require("./point.js");
 const Line = require("./line.js");
 
+const areInRange = function(point, point1, point2) {
+  if (point1 > point2) {
+    [point1, point2] = [point2, point1];
+  }
+  return point2 > point && point > point1;
+};
+
 const getSides = function(vertexA, vertexC) {
   const vertexB = new Point(vertexC.x, vertexA.y);
   const vertexD = new Point(vertexA.x, vertexC.y);
@@ -56,6 +63,12 @@ class Rectangle {
     if (!(point instanceof Point)) return false;
     const sidelist = getSides(this.vertexA, this.vertexC);
     return sidelist.some(line => line.hasPoint(point));
+  }
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+    const isXInRange = areInRange(point.x, this.vertexA.x, this.vertexC.x);
+    const isYInRange = areInRange(point.y, this.vertexA.y, this.vertexC.y);
+    return isXInRange && isYInRange;
   }
 }
 

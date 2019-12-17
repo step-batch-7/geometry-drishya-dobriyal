@@ -75,4 +75,22 @@ describe("rectangle", function() {
       assert.isFalse(rectangle1.hasPoint(point));
     });
   });
+
+  describe("covers", function() {
+    it("should validate for a point inside the rectangle", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
+      const point = new Point(1, 1);
+      assert.ok(rectangle.covers(point));
+    });
+    it("should invalidate for a point on the rectangle", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
+      const point = new Point(0, 1);
+      assert.isFalse(rectangle.covers(point));
+    });
+    it("should invalidate for a point outside the rectangle", function() {
+      const rectangle = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
+      const point = new Point(5, 1);
+      assert.isFalse(rectangle.covers(point));
+    });
+  });
 });
