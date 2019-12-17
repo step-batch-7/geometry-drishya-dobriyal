@@ -1,14 +1,14 @@
 const Point = require("./point.js");
 const Line = require("./line.js");
 
-const getSides = function(endA, endB, endC, endD) {
+const getSides = function(endA, endC) {
   const endB = new Point(endC.x, endA.y);
   const endD = new Point(endA.x, endC.y);
   const lineAB = new Line(endA, endB);
   const lineBC = new Line(endB, endC);
   const lineCD = new Line(endC, endD);
   const lineDA = new Line(endA, endA);
-  return { lineAB, lineBC, lineCD, lineDA };
+  return [lineAB, lineBC, lineCD, lineDA];
 };
 
 const getDiagonals = function(endA, endC) {
@@ -51,6 +51,11 @@ class Rectangle {
     const length = this.endC.y - this.endA.y;
     const width = this.endC.x - this.endA.x;
     return 2 * (length + width);
+  }
+  hasPoint(point) {
+    if (!(point instanceof Point)) return false;
+    const sidelist = getSides(this.endA, this.endC);
+    return sidelist.some(line => line.hasPoint(point));
   }
 }
 
