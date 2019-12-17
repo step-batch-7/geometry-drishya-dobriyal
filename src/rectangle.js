@@ -1,41 +1,41 @@
 const Point = require("./point.js");
 const Line = require("./line.js");
 
-const getSides = function(endA, endC) {
-  const endB = new Point(endC.x, endA.y);
-  const endD = new Point(endA.x, endC.y);
-  const lineAB = new Line(endA, endB);
-  const lineBC = new Line(endB, endC);
-  const lineCD = new Line(endC, endD);
-  const lineDA = new Line(endA, endA);
+const getSides = function(vertexA, vertexC) {
+  const vertexB = new Point(vertexC.x, vertexA.y);
+  const vertexD = new Point(vertexA.x, vertexC.y);
+  const lineAB = new Line(vertexA, vertexB);
+  const lineBC = new Line(vertexB, vertexC);
+  const lineCD = new Line(vertexC, vertexD);
+  const lineDA = new Line(vertexA, vertexA);
   return [lineAB, lineBC, lineCD, lineDA];
 };
 
-const getDiagonals = function(endA, endC) {
-  const endB = new Point(endC.x, endA.y);
-  const endD = new Point(endA.x, endC.y);
-  const diagonalAC = new Line(endA, endC);
-  const diagonalBD = new Line(endB, endD);
+const getDiagonals = function(vertexA, vertexC) {
+  const vertexB = new Point(vertexC.x, vertexA.y);
+  const vetexD = new Point(vertexA.x, vertexC.y);
+  const diagonalAC = new Line(vertexA, vertexC);
+  const diagonalBD = new Line(vertexB, vetexD);
   return { diagonalAC, diagonalBD };
 };
 
 class Rectangle {
-  constructor(endA, endC) {
-    this.endA = new Point(endA.x, endA.y);
-    this.endC = new Point(endC.x, endC.y);
+  constructor(vertexA, vertexC) {
+    this.vertexA = new Point(vertexA.x, vertexA.y);
+    this.vertexC = new Point(vertexC.x, vertexC.y);
   }
   toString() {
-    return `[Rectangle (${this.endA.x},${this.endA.y}) to (${this.endC.x},${this.endC.y})]`;
+    return `[Rectangle (${this.vertexA.x},${this.vertexA.y}) to (${this.vertexC.x},${this.vertexC.y})]`;
   }
   isEqualTo(otherShape) {
     if (!(otherShape instanceof Rectangle)) return false;
     const thisDiagonals = getDiagonals(
-      { x: this.endA.x, y: this.endA.y },
-      { x: this.endC.x, y: this.endC.y }
+      { x: this.vertexA.x, y: this.vertexA.y },
+      { x: this.vertexC.x, y: this.vertexC.y }
     );
     const othersDiagonals = getDiagonals(
-      { x: otherShape.endA.x, y: otherShape.endA.y },
-      { x: otherShape.endC.x, y: otherShape.endC.y }
+      { x: otherShape.vertexA.x, y: otherShape.vertexA.y },
+      { x: otherShape.vertexC.x, y: otherShape.vertexC.y }
     );
     return (
       thisDiagonals.diagonalAC.isEqualTo(othersDiagonals.diagonalAC) &&
@@ -43,18 +43,18 @@ class Rectangle {
     );
   }
   get area() {
-    const length = this.endC.y - this.endA.y;
-    const width = this.endC.x - this.endA.x;
+    const length = this.vertexC.y - this.vertexA.y;
+    const width = this.vertexC.x - this.vertexA.x;
     return length * width;
   }
   get perimeter() {
-    const length = this.endC.y - this.endA.y;
-    const width = this.endC.x - this.endA.x;
+    const length = this.vertexC.y - this.vertexA.y;
+    const width = this.vertexC.x - this.vertexA.x;
     return 2 * (length + width);
   }
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const sidelist = getSides(this.endA, this.endC);
+    const sidelist = getSides(this.vertexA, this.vertexC);
     return sidelist.some(line => line.hasPoint(point));
   }
 }
