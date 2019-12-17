@@ -16,7 +16,7 @@ describe("rectangle", function() {
       const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
       assert.isOk(rectangle1.isEqualTo(rectangle2));
     });
-    it.skip("should give true if other shape is instance of the rectangle and have same co - ordinates as the rectangle but interchanged", function() {
+    it("should give true if other shape is instance of the rectangle and have same co - ordinates as the rectangle but interchanged", function() {
       const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
       const rectangle2 = new Rectangle({ x: 2, y: 3 }, { x: 1, y: 1 });
       assert.isOk(rectangle1.isEqualTo(rectangle2));
