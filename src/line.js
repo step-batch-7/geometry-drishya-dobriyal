@@ -14,7 +14,7 @@ const areInRange = function(point, point1, point2) {
 };
 
 const calcCoOrdinate = function(ratio, coOrdinate1, coOrdinate2) {
-  return (ratio * coOrdinate2 + coOrdinate1) / (ratio + 1);
+  return (1 - ratio) * coOrdinate1 + coOrdinate2 * ratio;
 };
 
 class Line {
@@ -59,8 +59,8 @@ class Line {
     return this.findX(point.y) === point.x || this.findY(point.x) === point.y;
   }
   findPointFromStart(distance) {
-    if (this.length < distance) return null;
-    const lengthRatio = this.length / distance - 1;
+    if (this.length < distance || distance < 0) return null;
+    const lengthRatio = distance / this.length;
     const xCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.x, this.endB.x);
     const yCoOrdinate = calcCoOrdinate(lengthRatio, this.endA.y, this.endB.y);
     return new Point(xCoOrdinate, yCoOrdinate);
