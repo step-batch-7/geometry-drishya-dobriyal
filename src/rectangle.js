@@ -19,6 +19,9 @@ class Rectangle {
   get area() {
     return (this.endC.y - this.endA.y) * (this.endC.x - this.endA.x);
   }
+  get perimeter() {
+    return 2 * (this.endC.y - this.endA.y + this.endC.x - this.endA.x);
+  }
 }
 
 module.exports = Rectangle;
