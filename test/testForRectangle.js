@@ -27,12 +27,28 @@ describe("rectangle", function() {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
       assert.strictEqual(rectangle1.area, 6);
     });
+    it("should give area as zero of a given rectangle if diagonal is horizontal", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 3 });
+      assert.strictEqual(rectangle1.area, 0);
+    });
+    it("should give area as zero of a given rectangle if diagonal is vertical", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 0 });
+      assert.strictEqual(rectangle1.area, 0);
+    });
   });
 
   describe("perimeter", function() {
     it("should give perimeter of a given rectangle", function() {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
       assert.strictEqual(rectangle1.perimeter, 10);
+    });
+    it("should give perimeter as twice of width of a given rectangle if diagonal is horizontal", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 0, y: 3 });
+      assert.strictEqual(rectangle1.perimeter, 6);
+    });
+    it("should give perimeter as twice of length of a given rectangle if diagonal is vertical", function() {
+      const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 3, y: 0 });
+      assert.strictEqual(rectangle1.perimeter, 6);
     });
   });
 });

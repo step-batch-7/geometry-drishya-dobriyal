@@ -1,5 +1,4 @@
 const Point = require("./point.js");
-const Line = require("./line.js");
 
 class Rectangle {
   constructor(endA, endC) {
@@ -17,10 +16,14 @@ class Rectangle {
     );
   }
   get area() {
-    return (this.endC.y - this.endA.y) * (this.endC.x - this.endA.x);
+    const length = this.endC.y - this.endA.y;
+    const width = this.endC.x - this.endA.x;
+    return length * width;
   }
   get perimeter() {
-    return 2 * (this.endC.y - this.endA.y + this.endC.x - this.endA.x);
+    const length = this.endC.y - this.endA.y;
+    const width = this.endC.x - this.endA.x;
+    return 2 * (length + width);
   }
 }
 
