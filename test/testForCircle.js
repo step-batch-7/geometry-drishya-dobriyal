@@ -64,4 +64,11 @@ describe("circle", function() {
       assert.isFalse(circle.hasPoint(point));
     });
   });
+  describe("moveTo", function() {
+    it("should give a new circle of given co-ordinates with the same dimention as the original circle", function() {
+      const circle1 = new Circle({ x: 2, y: 2 }, 5);
+      const circle2 = new Circle({ x: 1, y: 1 }, 5);
+      assert.deepStrictEqual(circle1.moveTo({ x: 1, y: 1 }), circle2);
+    });
+  });
 });

@@ -24,6 +24,9 @@ class Circle {
   hasPoint(other) {
     return this.radius === other.findDistanceTo(this.coOrdinates);
   }
+  moveTo(newCentre) {
+    return new Circle(newCentre, this.radius);
+  }
 }
 
 module.exports = Circle;
