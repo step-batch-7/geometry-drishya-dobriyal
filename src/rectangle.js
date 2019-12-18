@@ -8,27 +8,19 @@ const areInRange = function(point, point1, point2) {
   return point2 > point && point > point1;
 };
 
-const getVertex = function(vertexA, vertexC) {
-  const A = new Point(vertexA.x, vertexA.y);
-  const B = new Point(vertexC.x, vertexA.y);
-  const C = new Point(vertexC.x, vertexC.y);
-  const D = new Point(vertexA.x, vertexC.y);
-  return { A, B, C, D };
-};
-
 const getSides = function(vertexA, vertexC) {
-  const vertex = getVertex(vertexA, vertexC);
-  const lineAB = new Line(vertex.A, vertex.B);
-  const lineBC = new Line(vertex.B, vertex.C);
-  const lineCD = new Line(vertex.C, vertex.D);
-  const lineDA = new Line(vertex.A, vertex.A);
+  const vertexB = new Point(vertexC.x, vertexA.y);
+  const vertexD = new Point(vertexA.x, vertexC.y);
+  const lineAB = new Line(vertexA, vertexB);
+  const lineBC = new Line(vertexB, vertexC);
+  const lineCD = new Line(vertexC, vertexD);
+  const lineDA = new Line(vertexA, vertexA);
   return [lineAB, lineBC, lineCD, lineDA];
 };
 
 const getDimen = function(vertexA, vertexC) {
-  const vertex = getVertex(vertexA, vertexC);
-  const length = vertex.A.findDistanceTo(vertex.B);
-  const width = vertex.C.findDistanceTo(vertex.B);
+  const length = getSides(vertexA, vertexC)[0].length;
+  const width = getSides(vertexA, vertexC)[1].length;
   return { length, width };
 };
 
