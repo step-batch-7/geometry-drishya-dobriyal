@@ -25,17 +25,10 @@ const getSides = function(vertexA, vertexC) {
   return [lineAB, lineBC, lineCD, lineDA];
 };
 
-const getDiagonals = function(vertexA, vertexC) {
-  const vertex = getVertex(vertexA, vertexC);
-  const diagonalAC = new Line(vertex.A, vertex.C);
-  const diagonalBD = new Line(vertex.B, vertex.D);
-  return { diagonalAC, diagonalBD };
-};
-
 const getDimen = function(vertexA, vertexC) {
-  const vertexB = getVertex(vertexA, vertexC).B;
-  const length = vertexA.findDistanceTo(vertexB);
-  const width = vertexC.findDistanceTo(vertexB);
+  const vertex = getVertex(vertexA, vertexC);
+  const length = vertex.A.findDistanceTo(vertex.B);
+  const width = vertex.C.findDistanceTo(vertex.B);
   return { length, width };
 };
 
@@ -49,25 +42,22 @@ class Rectangle {
   }
   isEqualTo(otherShape) {
     if (!(otherShape instanceof Rectangle)) return false;
-    const thisDiagonals = getDiagonals(
+    const thisDiagonals = new Line(this.vertexA, this.vertexC);
+    const otherDiagonals = new Line(otherShape.vertexA, otherShape.vertexC);
+    return thisDiagonals.isEqualTo(otherDiagonals);
+  }
+  get area() {
+    const dimention = getDimen(
       { x: this.vertexA.x, y: this.vertexA.y },
       { x: this.vertexC.x, y: this.vertexC.y }
     );
-    const othersDiagonals = getDiagonals(
-      { x: otherShape.vertexA.x, y: otherShape.vertexA.y },
-      { x: otherShape.vertexC.x, y: otherShape.vertexC.y }
-    );
-    return (
-      thisDiagonals.diagonalAC.isEqualTo(othersDiagonals.diagonalAC) &&
-      thisDiagonals.diagonalBD.isEqualTo(othersDiagonals.diagonalBD)
-    );
-  }
-  get area() {
-    const dimention = getDimen(this.vertexA, this.vertexC);
     return dimention.length * dimention.width;
   }
   get perimeter() {
-    const dimention = getDimen(this.vertexA, this.vertexC);
+    const dimention = getDimen(
+      { x: this.vertexA.x, y: this.vertexA.y },
+      { x: this.vertexC.x, y: this.vertexC.y }
+    );
     return 2 * (dimention.length + dimention.width);
   }
   hasPoint(point) {
