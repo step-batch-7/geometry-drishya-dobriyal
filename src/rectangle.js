@@ -26,6 +26,12 @@ const getDiagonals = function(vertexA, vertexC) {
   return { diagonalAC, diagonalBD };
 };
 
+const getDimen = function(vertexA, vertexC) {
+  const length = vertexC.y - vertexA.y;
+  const width = vertexC.x - vertexA.x;
+  return { length, width };
+};
+
 class Rectangle {
   constructor(vertexA, vertexC) {
     this.vertexA = new Point(vertexA.x, vertexA.y);
@@ -50,14 +56,12 @@ class Rectangle {
     );
   }
   get area() {
-    const length = this.vertexC.y - this.vertexA.y;
-    const width = this.vertexC.x - this.vertexA.x;
-    return length * width;
+    const dimention = getDimen(this.vertexA, this.vertexC);
+    return dimention.length * dimention.width;
   }
   get perimeter() {
-    const length = this.vertexC.y - this.vertexA.y;
-    const width = this.vertexC.x - this.vertexA.x;
-    return 2 * (length + width);
+    const dimention = getDimen(this.vertexA, this.vertexC);
+    return 2 * (dimention.length + dimention.width);
   }
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
