@@ -61,7 +61,7 @@ describe("rectangle", function() {
   describe("hasPoint", function() {
     it("should validate for a point that lies in that rectangle ", function() {
       const rectangle1 = new Rectangle({ x: 0, y: 0 }, { x: 2, y: 3 });
-      const point = new Point(2, 0);
+      const point = new Point(2, 3);
       assert.isOk(rectangle1.hasPoint(point));
     });
     it("should invalidate for a point that lies inside that rectangle ", function() {

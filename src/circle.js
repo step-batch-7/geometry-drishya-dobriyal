@@ -28,7 +28,7 @@ class Circle {
     return new Circle(newCentre, this.radius);
   }
   covers(other) {
-    return this.radius >= other.findDistanceTo(this.coOrdinates);
+    return this.radius > other.findDistanceTo(this.coOrdinates);
   }
 }
 

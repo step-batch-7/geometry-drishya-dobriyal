@@ -74,10 +74,10 @@ describe("circle", function() {
   });
 
   describe("covers", function() {
-    it("should be true if the point is in the circumference of the circle", function() {
+    it("should be false if the point is in the circumference of the circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 7);
       const point = new Point(0, 7);
-      assert.isOk(circle.covers(point));
+      assert.isFalse(circle.covers(point));
     });
     it("should be true if the point is inside the circumference of the circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 7);
